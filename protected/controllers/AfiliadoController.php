@@ -213,7 +213,6 @@ class AfiliadoController extends Controller
 
     public function actionRegistrar()
     {
-
         Yii::app()->theme = 'networking';
         $this->layout = "simple";
         $model=new Afiliado;
@@ -229,20 +228,14 @@ class AfiliadoController extends Controller
 
         if(isset($_POST['Afiliado']))
         {
-
             Yii::app()->clientScript->registerScript('removeEffect','$("#registrar").removeClass(" element-animation");');
-
             $model->attributes=$_POST['Afiliado'];
             if($model->validate())
             {
-                // form inputs are valid, do something here
-
-                /// SETEAR LA FECHA_REGISTRO
+                /// FECHA de REGISTRO
                 $model->fecha_ingreso = new CDbExpression('NOW()');
                 $model->save();
-                // Enviar correo de Bienvenida
-
-
+                // Ir al Segundo paso del registro
                 $this->redirect(array("afiliado/escogercirculo",'id'=>$model->idnw_afiliado));
                 return;
             }
@@ -263,25 +256,21 @@ class AfiliadoController extends Controller
             $model->attributes=$_POST['Afiliado'];
             if($model->validate())
             {
-
-                // Salvar circuloafiliado si no se suguirió uno nuevo
+                // Salvar circuloafiliado al menos que se haya sugerido un Circulo Nuevo
                 if ($model->idcirculo != -1)
                 {
                     $circuloafiliado = new CirculoAfiliado();
                     if (!$circuloafiliado->model()->exists(array("condition"=>"idafiliado = $model->idnw_afiliado and idcirculo = $model->idcirculo")))
                     {
-                    $circuloafiliado->idcirculo = $model->idcirculo;
-                    $circuloafiliado->idafiliado = $model->idnw_afiliado;
-                    $circuloafiliado->save(true);
-                    $model->nuevocirculo = "";
+                        $circuloafiliado->idcirculo = $model->idcirculo;
+                        $circuloafiliado->idafiliado = $model->idnw_afiliado;
+                        $circuloafiliado->save(true);
+                        $model->nuevocirculo = "";
                     }
                 }
-
                 $model->save();
-                //enviarcorreo
-
-
-                Yii::app()->myhelper->enviarMensaje("admin@networkingdays.com",$model->email,
+                // Enviar correo de Bienvenida
+                Yii::app()->myhelper->enviarMensajeSistema($model->idnw_afiliado,
                     "NetworkingDays - Bienvenido a Bordo",
                     $this->renderPartial('/afiliado/mails/_bienvenido',
                         array('nombre'=>$model->nombre,
@@ -294,33 +283,14 @@ class AfiliadoController extends Controller
                             'idcirculo'=>$model->idcirculo,
                             'circulo'=>$model->circulo['nombre'],
                             'nuevocirculo'=>$model->nuevocirculo,
-
-
-
-                        ),
-
-                        true),
-                    true
-
-                /*'bienvenido',
-                $model */
-                );
-
-
-
-
-
-
-
+                        ), true));
 
                 Yii::app()->user->setFlash('registro_exitoso', "Felicidades por formar parte de NetworkingDays!" . "<br/>" . "Ya puedes Ingresar al sistema!!");
                 $this->redirect(array("site/login"));
                 return;
             }
         }
-
         $this->render('registrar_paso2',array('model'=>$model));
-
     }
 
 

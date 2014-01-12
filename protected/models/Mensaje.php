@@ -4,9 +4,8 @@
  * This is the model class for table "{{mensaje}}".
  *
  * The followings are the available columns in table '{{mensaje}}':
- * @property integer $idnw_mensaje
- * @property string $de
- * @property string $para
+ * @property integer $de
+ * @property integer $para
  * @property string $asunto
  * @property string $mensaje
  * @property integer $tipo
@@ -31,11 +30,11 @@ class Mensaje extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('tipo, estado', 'numerical', 'integerOnly'=>true),
-			array('de, para, asunto', 'length', 'max'=>100),
+			array('asunto', 'length', 'max'=>100),
 			array('mensaje', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('idnw_mensaje, de, para, asunto, mensaje, tipo, estado, fecha', 'safe', 'on'=>'search'),
+			array('de, para, para_idafiliado  asunto, mensaje, tipo, estado, fecha', 'safe', 'on'=>'search'),
 		);
 	}
 

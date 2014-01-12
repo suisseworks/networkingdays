@@ -18,49 +18,53 @@ class MyHelper extends CApplicationComponent
     }
 
 
-    //Se usa =>  Yii::app()->myhelper->sendEmail(...);
-    public function sendEmail($de, $para, $asunto, $msg, $view = null, $model = null) {
-
+    //Se usa =>  Yii::app()->myhelper->enviarEmail(...);
+    public function enviarEmail($para, $asunto, $msg)
+    {
+        // Solo el Sistema manda correos a sus afiliados...
+        $de = array(Yii::app()->params['networkingDaysEmail'] => 'NetworkingDays');
         $message = new YiiMailMessage;
-
-        //$message->getHeaders()->addMailboxHeader('From');
-        //$message->SetFrom("admin@websensemble.com", 'NetworkingDays');
-        $message->setFrom(array('admin@websensemble.com' => 'NetworkingDays'));
-
+        $message->setFrom($de);
         $message->subject = $asunto;
-        //$message->from = 'admin@websensemble.com';
-
-
-
         $message->setTo($para);
-
-        if ($view != null) {
-            $message->view = $view;
-            $message->setBody('','text/html');
-            //$message->setBody(array('model'=>$model,'text/html')); // no sirve el HTML
-            //$msessage = $this->renderPartial('email_template', array('model' => $model), true);
-        }
-        else{
-            $message->setBody($msg,'text/html');
-        }
-
-
-
-
-        // you may want to use a template instead of specific mail body sending
-        // to do so, use this: $message->view = $path_to_your_specific_template;
-        // path to templates that you configured above
-
+        $message->setBody($msg,'text/html');
         Yii::app()->mail->send($message);
     }
 
 
-    public function enviarMensaje($de, $para, $asunto, $mensaje, $porEmail, $view = null, $model = null)
+    //Mensaje enviado por NetworkingDays
+    public function enviarMensajeSistema($idafiliado, $asunto, $msg)
     {
-        if ($porEmail)
+        $afiliado = Afiliado::model()->find(array('condition'=>"idnw_afiliado = $idafiliado"));
+        if ($afiliado)
         {
-           $this->sendEmail($de, $para, $asunto,$mensaje, $view, $model);
+            $message = new Mensaje;
+            $message->de = -1;  // NetworkingDays
+            $message->para = $afiliado->idnw_afiliado;
+            $message->asunto = $asunto;
+            $message->mensaje = $msg;
+            $message->fecha = new CDbExpression('NOW()');
+            $message->insert();
+
+            // Revisamos las preferncias del Afiliado sobre recibir notificaciones por correo electrónico
+            $preferencias = Preferencias::model()->find(array('condition'=>"idafiliado = $idafiliado"));
+            // Si no existe entrada de preferencias...enviamos correo : TODO: modificar
+            if (!$preferencias)
+                $this->enviarEmail($afiliado->email,$asunto,$msg);
+            else
+                if ($preferencias->notificaciones_por_correo == 1)
+                    $this->enviarEmail($afiliado->email,$asunto,$msg);
         }
+    }
+
+
+
+
+    public function enviarMensaje($id_de, $id_para, $asunto, $mensaje, $porEmail)
+    {
+        // porEmail...se toma de las preferencias del usuario..no por parametro...
+
+
 
         $message = new Mensaje;
         $message->de = 'admin@websensemble.com';

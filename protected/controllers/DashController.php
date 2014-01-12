@@ -38,6 +38,9 @@ class DashController extends Controller
         }
         else {
             $this->titulo = "Mi Dashboard";
+
+            // Otener número de correos
+
             $this->render("index");
         }
     }
@@ -110,28 +113,21 @@ class DashController extends Controller
 
 
         // Notificar al referidor
-        Yii::app()->myhelper->enviarMensaje("admin@networkingdays.com",$referencia->referido->email,
-            "NetworkingDays - Has recibido una referencia",
+        Yii::app()->myhelper->enviarMensajeSistema($referencia->idreferidor,
+            "NetworkingDays - Has realizado una referencia",
             $this->renderPartial('/afiliado/mails/_referencia-enviada',
                 array('nombre'=>$referencia->referidor['nombre'],
-                    'referido'=>$referencia->referido['nombre'] . " " . $referencia->referidor['apellido'] ,
+                    'referido'=>$referencia->referido['nombre'] . " " . $referencia->referido['apellido'] ,
                     'interesado'=>$referencia->nombre_completo,
                     'categoria'=>$afiliado->categoria['nombre'],
                     'especialidad'=>$afiliado->especialidad['nombre'],
                 ),
-                true),
-            true
-        );
+                true));
 
 
 
-        /*
-        Yii::app()->myhelper->enviarMensaje("admin@networkingdays.com", Yii::app()->user->email,
-            "Has realizado una referencia","Has referido a " . $referencia->referido->nombre, true);
-
-        */
         //Notificar al referido
-        Yii::app()->myhelper->enviarMensaje("admin@networkingdays.com",$referencia->referido->email,
+        Yii::app()->myhelper->enviarMensajeSistema($referencia->idreferido,
             "NetworkingDays - Has recibido una referencia",
             $this->renderPartial('/afiliado/mails/_fuiste-referido',
                 array('nombre'=>$referencia->referido['nombre'],
@@ -141,25 +137,25 @@ class DashController extends Controller
                      'especialidad'=>$afiliado->especialidad['nombre'],
                      'telefono'=>$referencia->telefono,
                      'email'=>$referencia->email,
-
-
-
-
+                    'comentario'=>$referencia->comentario
                 ),
-                true),
-            true
-        );
-
-        /*
-
-        Yii::app()->myhelper->enviarMensaje("admin@networkingdays.com", $referencia->referido->email,
-            "Felicidades! Has recibido una referencia","Has sido referido por " . $referencia->referidor->nombre, true);
+                true));
 
 
-        // Notificar al interesado
-        Yii::app()->myhelper->enviarMensaje("admin@networkingdays.com", $referencia->email,
-            "Tu interés ha sido comunicado","Has sido referido a " . $referencia->referido->nombre . " por " . $referencia->referidor->nombre, true);
-        */
+        // Enviar correo electronico al interesado
+        Yii::app()->myhelper->enviarEmail($referencia->email,
+            "NetworkingDays - Tu interés ha sido comunicado.",
+            $this->renderPartial('/afiliado/mails/_notificacion-al-interesado',
+                array('nombre'=>$referencia->nombre_completo,
+                    'referidor'=>$referencia->referidor['nombre'] . " " . $referencia->referidor['apellido'] ,
+                    'referido'=>$referencia->referido['nombre'] . " " . $referencia->referido['apellido'] ,
+                    'categoria'=>$afiliado->categoria['nombre'],
+                    'especialidad'=>$afiliado->especialidad['nombre'],
+                    'telefono'=>"",
+                    'email'=>$referencia->referido['email']
+                    ,
+                ),
+                true));
     }
 
 

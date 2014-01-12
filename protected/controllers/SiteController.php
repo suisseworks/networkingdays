@@ -171,20 +171,11 @@ class SiteController extends Controller
         $afiliado->clave = md5($nuevaClave);
         $afiliado->save();
 
-
-
-        Yii::app()->myhelper->enviarMensaje("admin@networkingdays.com",$email,
+        // Enviar Mensaje
+        Yii::app()->myhelper->enviarMensajeSistema($afiliado->idnw_afiliado,
             "NetworkingDays - Recuperar Contaseña",
             $this->renderPartial('/afiliado/mails/_recuperar-password',
-                array('nombre'=>$afiliado->nombre,
-                      'nuevaClave'=>$nuevaClave
-                ),
-
-                true),
-            true
-          );
-
-
+                                array('nombre'=>$afiliado->nombre,'nuevaClave'=>$nuevaClave),true));
 
     }
 
@@ -195,9 +186,8 @@ class SiteController extends Controller
 	public function actionLogout()
 	{
 		Yii::app()->user->logout();
-        /*Yii::app()->user->clearStates();
-        $this->checkUser();
-        $_SESSION = array();*/
+        Yii::app()->user->clearStates();
+        $_SESSION = array();
 		$this->redirect(Yii::app()->homeUrl);
 	}
 

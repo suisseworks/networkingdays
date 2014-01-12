@@ -155,6 +155,7 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'matthiasmalek72@gmail.com',
+        'networkingDaysEmail' => 'admin@websensemble.com'
 	),
 );
 
