@@ -113,7 +113,13 @@ class Afiliado extends CActiveRecord
             'especialidad' => array(self::BELONGS_TO, 'Especialidad', 'idespecialidad'),
             'pais'      =>  array(self::BELONGS_TO, 'Pais', 'idpais'),
             'provincia'      =>  array(self::BELONGS_TO, 'Provincia', 'idprovincia'),
-            'circulo'       => array(self::BELONGS_TO, 'Circulo', 'idcirculo')
+            'circulo'       => array(self::BELONGS_TO, 'Circulo', 'idcirculo'),
+
+            'mensajesRecibidos' => array(self::HAS_MANY,   'Mensaje',    'para'),
+            'mensajesEnviados'   => array(self::HAS_MANY,   'Mensaje',    'de'),
+
+
+
 		);
 
 

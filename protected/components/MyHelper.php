@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Francisco Quesada
- * Date: 19/12/13
- * Time: 07:42 PM
- */
-
 
 class MyHelper extends CApplicationComponent
 {
@@ -33,7 +26,7 @@ class MyHelper extends CApplicationComponent
 
 
     //Mensaje enviado por NetworkingDays
-    public function enviarMensajeSistema($idafiliado, $asunto, $msg)
+    public function enviarMensajeSistema($idafiliado, $asunto, $msg, $tipo, $msgEmail)
     {
         $afiliado = Afiliado::model()->find(array('condition'=>"idnw_afiliado = $idafiliado"));
         if ($afiliado)
@@ -43,6 +36,8 @@ class MyHelper extends CApplicationComponent
             $message->para = $afiliado->idnw_afiliado;
             $message->asunto = $asunto;
             $message->mensaje = $msg;
+            $message->tipo = $tipo;
+            $message->estado = MyGlobals::MENSAJE_ESTADO_NOLEIDO;
             $message->fecha = new CDbExpression('NOW()');
             $message->insert();
 
@@ -50,39 +45,24 @@ class MyHelper extends CApplicationComponent
             $preferencias = Preferencias::model()->find(array('condition'=>"idafiliado = $idafiliado"));
             // Si no existe entrada de preferencias...enviamos correo : TODO: modificar
             if (!$preferencias)
-                $this->enviarEmail($afiliado->email,$asunto,$msg);
+                $this->enviarEmail($afiliado->email,$asunto,$msgEmail);
             else
                 if ($preferencias->notificaciones_por_correo == 1)
-                    $this->enviarEmail($afiliado->email,$asunto,$msg);
+                    $this->enviarEmail($afiliado->email,$asunto,$msgEmail);
         }
     }
 
 
 
 
-    public function enviarMensaje($id_de, $id_para, $asunto, $mensaje, $porEmail)
-    {
-        // porEmail...se toma de las preferencias del usuario..no por parametro...
-
-
-
-        $message = new Mensaje;
-        $message->de = 'admin@websensemble.com';
-        $message->para = $para;
-        $message->asunto = $asunto;
-        $message->mensaje = $mensaje;
-        $message->fecha = new CDbExpression('NOW()');
-        $message->insert();
-
-    }
 
 
 
     public function toConsole( $data ) {
         if ( is_array( $data ) )
-            $output = "<script>console.log( 'Debug Objects: " . implode( ',', $data) . "' );</script>";
+            $output = "<script>console.log( 'NetworkingDays Console: " . implode( ',', $data) . "' );</script>";
         else
-            $output = "<script>console.log( 'Debug Objects: " . $data . "' );</script>";
+            $output = "<script>console.log( 'NetworkingDays Console: " . $data . "' );</script>";
         echo $output;
     }
 
@@ -108,6 +88,42 @@ class MyHelper extends CApplicationComponent
         return $path;
 
     }
+
+    //Yii::app()->myhelper->mensajesNoLeidos()
+    public function mensajesNoLeidos($id = null)
+    {
+        if ($id == null)
+            $id = Yii::app()->user->id;
+
+        $noleido = MyGlobals::MENSAJE_ESTADO_NOLEIDO;
+        return Mensaje::model()->count(array('condition'=>"para = $id and estado = $noleido "));
+
+    }
+
+
+    public function nombreMes($date)
+    {
+        $mes = date("m",strtotime($date));
+        switch($mes) {
+            case 1: return "Enero"; break;
+            case 2: return "Febrero"; break;
+            case 3: return "Marzo"; break;
+            case 4: return "Abril"; break;
+            case 5: return "Mayo"; break;
+            case 6: return "Junio"; break;
+            case 7: return "Julio"; break;
+            case 8: return "Agosto"; break;
+            case 9: return "Septiembre"; break;
+            case 10: return "Octubre"; break;
+            case 11: return "Noviembre"; break;
+            case 12: return "Diciembre"; break;
+        }
+
+    }
+
+
+
+
 
 }
 

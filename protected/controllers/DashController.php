@@ -39,9 +39,10 @@ class DashController extends Controller
         else {
             $this->titulo = "Mi Dashboard";
 
-            // Otener número de correos
+            // Cargamos modelo Mensaje
+            $afiliado = Afiliado::model()->findByPk(Yii::app()->user->id);
 
-            $this->render("index");
+            $this->render("index",array('afiliado'=>$afiliado));
         }
     }
 
@@ -69,7 +70,7 @@ class DashController extends Controller
 
 
 
-    public function actionReferir($id)
+    public function actionReferir()
     {
         $this->titulo = "Referir";
 
@@ -115,6 +116,8 @@ class DashController extends Controller
         // Notificar al referidor
         Yii::app()->myhelper->enviarMensajeSistema($referencia->idreferidor,
             "NetworkingDays - Has realizado una referencia",
+            'Has realizado una referencia. Gracias por ayudar a los círculos de NetworkingDays',
+            MyGlobals::MENSAJE_TIPO_NOTIFICACION,
             $this->renderPartial('/afiliado/mails/_referencia-enviada',
                 array('nombre'=>$referencia->referidor['nombre'],
                     'referido'=>$referencia->referido['nombre'] . " " . $referencia->referido['apellido'] ,
@@ -129,6 +132,8 @@ class DashController extends Controller
         //Notificar al referido
         Yii::app()->myhelper->enviarMensajeSistema($referencia->idreferido,
             "NetworkingDays - Has recibido una referencia",
+            'Has recibido una referencia. Felicidades y adelante con tu contacto',
+            MyGlobals::MENSAJE_TIPO_NOTIFICACION,
             $this->renderPartial('/afiliado/mails/_fuiste-referido',
                 array('nombre'=>$referencia->referido['nombre'],
                      'referidor'=>$referencia->referidor['nombre'] . " " . $referencia->referidor['apellido'] ,

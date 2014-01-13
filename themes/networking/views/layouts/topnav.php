@@ -51,7 +51,7 @@
 
 
                 <li class="cdrop active">
-                    <a href="<?php echo Yii::app()->request->baseUrl . "/dash/referir/" . Yii::app()->user->id; ?>"><i class="icon-thumbs-up"></i> Referir</a>
+                    <a href="<?php echo Yii::app()->request->baseUrl . "/dash/referir/"  ?>"><i class="icon-thumbs-up"></i> Referir</a>
                 </li>
 
                 <li class="cdrop"><a href="#">Invitar</a></li>
@@ -83,7 +83,7 @@
                     <a href="#" class="dropdown-toggle dropdown-avatar" data-toggle="dropdown">
               <span>
                 <img class="menu-avatar" src="<?php echo Yii::app()->myhelper->myAvatarURL(); ?>" /> <span><?php echo Yii::app()->user->name; ?> <i class="icon-caret-down"></i></span>
-                <span class="badge badge-dark-red">3</span>
+                <span class="badge badge-dark-red"><?php echo Yii::app()->myhelper->mensajesNoLeidos(); ?>  </span>
               </span>
                     </a>
                     <ul class="dropdown-menu">

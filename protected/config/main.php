@@ -45,6 +45,10 @@ return array(
             'class'=>'application.components.MyHelper',
         ),
 
+        'globals'=>array(
+            'class'=>'application.components.MyGlobals'
+        ),
+
 
         'mail' => array(
             'class' => 'ext.yii-mail.YiiMail',
@@ -99,7 +103,7 @@ return array(
 		// uncomment the following to use a MySQL database
 
 
-
+        /*
 
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=networking',
@@ -109,13 +113,13 @@ return array(
 			'charset' => 'utf8',
             'tablePrefix' => 'nw_',
 		),
-
+        */
 
         /*
          * DB INFO POR PRODUCTION
          */
 
-    /*
+
 
         'db'=>array(
             'connectionString' => 'mysql:host=localhost;dbname=networking',
@@ -127,7 +131,8 @@ return array(
         ),
 
 
-    */
+
+
 
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors

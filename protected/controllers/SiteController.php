@@ -174,6 +174,8 @@ class SiteController extends Controller
         // Enviar Mensaje
         Yii::app()->myhelper->enviarMensajeSistema($afiliado->idnw_afiliado,
             "NetworkingDays - Recuperar Contaseña",
+            "Solicitaste el envió de una contraseña nueva a tu correo electrónico",
+            MyGlobals::MENSAJE_TIPO_NOTIFICACION,
             $this->renderPartial('/afiliado/mails/_recuperar-password',
                                 array('nombre'=>$afiliado->nombre,'nuevaClave'=>$nuevaClave),true));
 

@@ -20,10 +20,6 @@ class AfiliadoController extends Controller
        $js->registerScriptFile($baseUrl.'/js/jquery.qtip-1.0.0-rc3.min.js');
        //$js->registerScriptFile($baseUrl.'/js/application.js');
 
-
-
-
-
     }
 
 	/**
@@ -272,6 +268,8 @@ class AfiliadoController extends Controller
                 // Enviar correo de Bienvenida
                 Yii::app()->myhelper->enviarMensajeSistema($model->idnw_afiliado,
                     "NetworkingDays - Bienvenido a Bordo",
+                    'Bienvenido a la gran familia de NetworkingDays!',
+                    MyGlobals::MENSAJE_TIPO_NOTIFICACION,
                     $this->renderPartial('/afiliado/mails/_bienvenido',
                         array('nombre'=>$model->nombre,
                             'categoria'=>$model->categoria['nombre'],
