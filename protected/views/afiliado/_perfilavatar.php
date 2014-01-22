@@ -32,11 +32,14 @@
 
 <?php
 
+    //$miavatar = Yii::app()->myhelper->myAvatarURL();
+    /*
     $miavatar = Yii::app()->request->baseUrl . "/uploads/avatars/";
     if ($model->avatar == null or $model->avatar == "")
         $miavatar .= "dummy.jpg";
     else
         $miavatar .= $model->avatar;
+    */
 ?>
 
 
@@ -52,7 +55,7 @@
 
                              <?php //echo $form->labelEx($model,'avatar'); ?>
                              <img id="miavatar" class="element-animation2 avatar-perfil" width="240px" height="240px"
-                                  src="<?php echo $miavatar ?>">
+                                  src="<?php echo Yii::app()->myhelper->myAvatarURL(); ?>">
                              <?php echo CHtml::activeFileField($model,'avatar',array('class'=>'hidden')); ?>
                              <?php echo $form->textField($model,'avatar', array('class'=>'hidden')); ?>
                              <button class="btn btn-blue" id="btn-upload">Seleccionar/Cambiar Foto</button>

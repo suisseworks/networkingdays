@@ -15,6 +15,10 @@
 
 <script src="<?php //echoYii::app()->theme->baseUrl; ?>/javascripts/application.js" type="text/javascript"></script>
 
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/myinit.js" type="text/javascript"></script>
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/utils.js" type="text/javascript"></script>
+
+
 
 
 <!--<link rel="stylesheet" type="text/css" href="--><?php ////echo Yii::app()->request->baseUrl; ?><!--/css/main.css" />-->

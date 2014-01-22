@@ -12,7 +12,7 @@
 				<table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border: 1px solid #cccccc; border-collapse: collapse;">
 					<tr>
 						<td align="center" bgcolor="#70bbd9" style="padding: 40px 0 30px 0; color: #153643; font-size: 28px; font-weight: bold; font-family: Arial, sans-serif;">
-							<img src="http://www.networkingdayscircles.com/images/logo-networking-days.png" alt="Creating Email Magic" width="567" height="230" style="display: block;" />
+							<img src="<?php echo MyGlobals::EMAIL_LOGO_PATH; ?>" alt="NetworkingDays" width="567" height="230" style="display: block;" />
 						</td>
 					</tr>
 					<tr>

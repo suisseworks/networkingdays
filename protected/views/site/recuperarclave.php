@@ -30,6 +30,14 @@ Yii::app()->clientScript->registerScript(
 ?>
 
 
+
+<script>
+    $(document).ready(function() {
+        $("#login-form").bind("submit", hola);
+    });
+
+</script>
+
 <div class="container">
     <div class="col-md-4 col-md-offset-3">
         <div class="padded">
@@ -62,6 +70,7 @@ Yii::app()->clientScript->registerScript(
                             'enableClientValidation'=>true,
                             'clientOptions'=>array(
                                 'validateOnSubmit'=>true,
+                                //'beforeValidate' => 'alert("beforeValidate");',
                             ),
                             'htmlOptions'=>array(
                                 'class'=>'separate-sections',

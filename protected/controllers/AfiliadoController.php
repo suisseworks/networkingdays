@@ -119,6 +119,9 @@ class AfiliadoController extends Controller
 		));
 	}
 
+
+
+
     public function actionPerfil($id)
     {
         Yii::app()->theme = 'networking';

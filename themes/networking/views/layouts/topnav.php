@@ -101,7 +101,7 @@
 
                         <li><a href="<?php echo Yii::app()->request->baseUrl . "/afiliado/perfil/" . Yii::app()->user->id; ?>"><i class="icon-user"></i> <span>Perfil</span></a></li>
                         <li><a href="#"><i class="icon-cog"></i> <span>Preferencias</span></a></li>
-                        <li><a href="#"><i class="icon-envelope"></i> <span>Mensajes</span> <span class="label label-dark-red pull-right">3</span></a></li>
+                        <li><a href="#"><i class="icon-envelope"></i> <span>Mensajes</span> <span class="label label-dark-red pull-right"><?php echo Yii::app()->myhelper->mensajesNoLeidos(); ?></span></a></li>
                         <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/site/logout"><i class="icon-off"></i> <span>Salir</span></a></li>
                     </ul>
                 </li>

@@ -3,7 +3,6 @@
 $this->pageTitle=Yii::app()->name . ' - Mensajes';
 $this->breadcrumbs=array(
     array('Mensajes', null)
-    //array('Perfil', "afiliado/perfil")
 );
 ?>
 
@@ -14,3 +13,4 @@ $this->breadcrumbs=array(
 </script>
 
 
+MIS MENSAJES

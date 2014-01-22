@@ -18,6 +18,9 @@ class MyGlobals {
     const MENSAJE_ESTADO_NOLEIDO = 1;
     const MENSAJE_ESTADO_LEIDO = 2;
 
+
+    const EMAIL_LOGO_PATH = "http://www.websensemble.com/networkingdays/images/logoemail.png";
+
 }
 
 ?>

@@ -62,7 +62,6 @@ Yii::app()->clientScript->registerScript('ajax-prueba',
                     <span class="title"><h3><a tooltip="Círculos disponibles en tu país!"> Círculos Disponibles</a></h3>
                     </span>
 
-                    <div style="margin: 0 auto; height: 32px; width: 32px;" id="ajaxwait"></div>
                     <div class="input-group addon-left">
                         <?php
                             $idpais = intval($model->idpais);
@@ -80,9 +79,9 @@ Yii::app()->clientScript->registerScript('ajax-prueba',
                                     'type'=>'POST',
                                     'update' => '#arbolcirculos',
                                     'beforeSend' => 'function(){
-                                                $("#ajaxwait").addClass("loading");}',
+                                                 $("#ajaxloader").show(); }',
                                     'complete' => 'function(){
-                                                $("#ajaxwait").removeClass("loading");}',
+                                                $("#ajaxloader").hide();}',
                                 ),
                                 array('class' => 'btn btn-large btn-green btn-block ')
                             );

@@ -23,6 +23,9 @@
     $this->endContent();
 ?>
 
+
+<div id="ajaxloader" class="centerscreen"></div>
+
     <section class="main-content">
         <div class="container">
            <?php echo $content; ?>

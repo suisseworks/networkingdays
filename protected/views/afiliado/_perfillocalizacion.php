@@ -22,7 +22,14 @@
                                       'ajax'=>array(
                                           'type'=>'POST',
                                           'url'=>CController::createUrl('afiliado/selectprovincias'),
-                                          'update'=>'#'. CHtml::activeId($model,'idprovincia')
+                                          'update'=>'#'. CHtml::activeId($model,'idprovincia'),
+                                          'beforeSend' => 'function(){
+                                                 $("#ajaxloader").show();
+                                                }',
+                                          'complete' => 'function(){
+                                                $("#ajaxloader").hide();
+                                                 $("#yt1").click();
+                                                }',
 
                                       ),
 

@@ -12,9 +12,14 @@ function setActiveMenu(id, id2) {
     $(id).addClass('active');
     if (id2 != null) {
         $(id  + "> ul").addClass('in');   //des-colapsamos el menú con submenú
-        $(id2).addClass('active')
+        $(id2).addClass('active');
     }
 
 }
 
 
+function cursorWait()
+{
+
+    $("*").css("cursor", "wait");
+}

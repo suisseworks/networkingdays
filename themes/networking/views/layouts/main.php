@@ -4,6 +4,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0">
+    <meta name="description" content="Los Círculos de NetworkingDays son la red más grande de referidos de hispanoamérica.">
 
     <link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/favicon.ico" type="image/x-icon" />
 
@@ -32,6 +33,8 @@
 ?>
 
 
+<div id="ajaxloader" class="centerscreen"></div>
+
 
 <div class="main-content">
     <div id="headerbienvenida" class="container hidden">
@@ -49,8 +52,6 @@
                         {
                             echo "<h5> <span>Bienvenido</span> </h5>";
                         }
-
-
                     ?>
                 </div>
 

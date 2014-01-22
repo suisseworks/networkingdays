@@ -73,7 +73,7 @@ class MyHelper extends CApplicationComponent
         $path = Yii::app()->request->baseUrl . "/uploads/avatars/";
         if ($model == null)
         {
-            if (isset(Yii::app()->user->avatar))
+            if (isset(Yii::app()->user->avatar) and Yii::app()->user->avatar != "")
                 $path .= Yii::app()->user->avatar;
             else
                 $path .= "dummy.jpg";

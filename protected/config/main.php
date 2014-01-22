@@ -103,7 +103,7 @@ return array(
 		// uncomment the following to use a MySQL database
 
 
-        /*
+    /*
 
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=networking',
@@ -113,7 +113,7 @@ return array(
 			'charset' => 'utf8',
             'tablePrefix' => 'nw_',
 		),
-        */
+*/
 
         /*
          * DB INFO POR PRODUCTION
@@ -131,8 +131,7 @@ return array(
         ),
 
 
-
-
+    
 
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors

@@ -25,12 +25,6 @@ class DashController extends Controller
 
 
 
-
-
-
-
-
-
     public function actionIndex()
     {
         if (Yii::app()->user->isGuest) {
@@ -64,8 +58,53 @@ class DashController extends Controller
     public function actionMensajes($id)
     {
         $this->titulo = "Mensajes";
+        $this->render('mensajes');
 
     }
+
+
+
+    public function actionCirculo($id)
+    {
+        Yii::app()->theme = 'networking';
+        $this->layout= '//layouts/column1';
+
+        $model=new Afiliado('search');
+        $model->unsetAttributes();  // clear any default values
+
+        if(isset($_POST['Afiliado']))
+            $model->attributes=$_POST['Afiliado'];
+
+        // Filtar grid por círculo actual
+        $model->circulo = Circulo::getNombre(Yii::app()->user->circulo);
+
+        $afiliado = $this->loadAfiliado($id);
+        $circulo =  $this->loadCirculo(Yii::app()->user->circulo);
+
+
+
+        $this->titulo = "Mi Círculo";
+        $this->render('circulo',array('model'=>$model,'afiliado'=>$afiliado,'circulo'=>$circulo));
+
+    }
+
+
+    public function loadAfiliado($id)
+    {
+        $model=Afiliado::model()->findByPk($id);
+        if($model===null)
+            throw new CHttpException(404,'The requested page does not exist.');
+        return $model;
+    }
+
+    public function loadCirculo($id)
+    {
+        $model=Circulo::model()->findByPk($id);
+        if($model===null)
+            throw new CHttpException(404,'The requested page does not exist.');
+        return $model;
+    }
+
 
 
 

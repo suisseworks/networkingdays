@@ -9,9 +9,6 @@
                 <h4 style="margin-left: 10px;"><?php echo "Bienvenid@ a bordo " . $model->nombre  ?> </h4>
                     <span style="margin-left: 10px;">Por favor completa la siguiente información.</span>
                 </p>
-                <div style="height: 10px; width: inherit;" id="ajaxwaitcirculos">
-
-                </div>
                 <div class="box-content padded">
                     <div class="form">
 
@@ -53,10 +50,11 @@
                                         'success'=>'updateprovinciasycirculos',
                                         'dataType' => 'json',
                                         'beforeSend' => 'function(){
-                                                $("#ajaxwait").addClass("loading");
+                                                $("#ajaxloader").show();
                                                 }',
                                         'complete' => 'function(){
-                                                $("#ajaxwait").removeClass("loading");}',
+                                                $("#ajaxloader").hide();
+                                                }',
 
                                     ),
 
@@ -110,9 +108,10 @@
                                         //'success'=>'updateespecialidadesycirculos',
                                         //'dataType' => 'json',
                                         'beforeSend' => 'function(){
-                                                $("#ajaxwaitcirculos").addClass("loading");}',
+                                                $("#ajaxloader").show();
+                                                }',
                                         'complete' => 'function(){
-                                                $("#ajaxwaitcirculos").removeClass("loading");
+                                                $("#ajaxloader").hide();
                                                   /*$("#yt1").click();*/
 
                                                 }',
@@ -173,9 +172,10 @@
                                             'url'=>CController::createUrl('afiliado/selectcirculos'),
                                             'update'=>'#'. CHtml::activeId($model,'idcirculo'),
                                             'beforeSend' => 'function(){
-                                                $("#ajaxwaitcirculos").addClass("loading");}',
+                                                 $("#ajaxloader").show();
+                                                }',
                                             'complete' => 'function(){
-                                                $("#ajaxwaitcirculos").removeClass("loading");
+                                                $("#ajaxloader").hide();
                                                  $("#yt1").click();
                                                 }',
                                         ),

@@ -21,7 +21,14 @@
                                        'ajax'=>array(
                                            'type'=>'POST',
                                            'url'=>CController::createUrl('afiliado/selectespecialidades'),
-                                           'update'=>'#'. CHtml::activeId($model,'idespecialidad')
+                                           'update'=>'#'. CHtml::activeId($model,'idespecialidad'),
+                                           'beforeSend' => 'function(){
+                                                 $("#ajaxloader").show();
+                                                }',
+                                           'complete' => 'function(){
+                                                $("#ajaxloader").hide();
+                                                }',
+
                                        ),
 
                                        'prompt' => 'Selecione una categoría'));
