@@ -120,6 +120,38 @@ class AfiliadoController extends Controller
 	}
 
 
+    public function actionPreferencias($id)
+    {
+        Yii::app()->theme = 'networking';
+        $this->layout= '//layouts/column1';
+        $this->titulo = "Preferencias";
+
+        $model=$this->loadModel($id);
+        $this->render("preferencias", array("model"=>$model));
+
+    }
+
+    public function actionMensajes($id)
+    {
+        Yii::app()->theme = 'networking';
+        $this->layout= '//layouts/column1';
+        $this->titulo = "Mensajes";
+
+        $model=$this->loadModel($id);
+        $this->render("mensajes", array("model"=>$model));
+    }
+
+
+    public function actionCuenta($id)
+    {
+        Yii::app()->theme = 'networking';
+        $this->layout= '//layouts/column1';
+        $this->titulo = "Mi Cuenta";
+
+        $model=$this->loadModel($id);
+        $this->render("cuenta", array("model"=>$model));
+    }
+
 
 
     public function actionPerfil($id)

@@ -54,7 +54,7 @@
                     <a href="<?php echo Yii::app()->request->baseUrl . "/dash/referir/"  ?>"><i class="icon-thumbs-up"></i> Referir</a>
                 </li>
 
-                <li class="cdrop"><a href="#">Invitar</a></li>
+                <li class="cdrop"><a href="<?php echo Yii::app()->request->baseUrl . "/dash/invitar/"  ?>">Invitar</a></li>
 
 
 <!--                <li class="dropdown cdrop">-->
@@ -100,8 +100,9 @@
                         <li class="divider"></li>
 
                         <li><a href="<?php echo Yii::app()->request->baseUrl . "/afiliado/perfil/" . Yii::app()->user->id; ?>"><i class="icon-user"></i> <span>Perfil</span></a></li>
-                        <li><a href="#"><i class="icon-cog"></i> <span>Preferencias</span></a></li>
-                        <li><a href="#"><i class="icon-envelope"></i> <span>Mensajes</span> <span class="label label-dark-red pull-right"><?php echo Yii::app()->myhelper->mensajesNoLeidos(); ?></span></a></li>
+                        <li><a href="<?php echo Yii::app()->request->baseUrl . "/afiliado/preferencias/" . Yii::app()->user->id; ?>"><i class="icon-cog"></i> <span>Preferencias</span></a></li>
+                        <li><a href="<?php echo Yii::app()->request->baseUrl . "/afiliado/mensajes/" . Yii::app()->user->id; ?>"><i class="icon-envelope"></i> <span>Mensajes</span> <span class="label label-dark-red pull-right"><?php echo Yii::app()->myhelper->mensajesNoLeidos(); ?></span></a></li>
+                        <li><a href="<?php echo Yii::app()->request->baseUrl . "/afiliado/cuenta/" . Yii::app()->user->id; ?>"><i class="icon-money"></i> <span>Mi Cuenta</span></a></li>
                         <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/site/logout"><i class="icon-off"></i> <span>Salir</span></a></li>
                     </ul>
                 </li>

@@ -55,6 +55,30 @@
                     ?>
                 </div>
 
+
+                <ul class="list-inline pull-right sparkline-box">
+
+                    <li class="sparkline-row">
+                        <h4 class="blue"><span>Orders</span> 847</h4>
+                        <div class="sparkline big" data-color="blue"><!--23,7,27,22,11,27,29,25,22,23,27,11--></div>
+                    </li>
+
+                    <li class="sparkline-row">
+                        <h4 class="green"><span>Reviews</span> 223</h4>
+                        <div class="sparkline big" data-color="green"><!--19,26,12,28,14,9,5,7,24,10,3,14--></div>
+                    </li>
+
+                    <li class="sparkline-row">
+                        <h4 class="red"><span>New visits</span> 7930</h4>
+                        <div class="sparkline big"><!--14,5,20,12,3,8,22,18,8,17,17,13--></div>
+                    </li>
+
+                </ul>
+
+
+
+
+
             </div>
         </div>
      </div> <!--container -->

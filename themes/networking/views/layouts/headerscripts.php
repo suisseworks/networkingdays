@@ -11,9 +11,13 @@
 
   <script src="<?php echo Yii::app()->theme->baseUrl; ?>/javascripts/application.js" type="text/javascript"></script>
 
-
+ <script src="<?php //echo Yii::app()->request->baseUrl; ?>/js/application.js" type="text/javascript"></script>
+<!--
  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+-->
+
 
  <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/myinit.js" type="text/javascript"></script>
  <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/utils.js" type="text/javascript"></script>
@@ -21,6 +25,8 @@
 
 
 
-<!--<link rel="stylesheet" type="text/css" href="--><?php ////echo Yii::app()->request->baseUrl; ?><!--/css/main.css" />-->
-<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/misc.css" />
+<link rel="stylesheet" type="text/css" href="<?php //echo Yii::app()->request->baseUrl; ?>/css/main.css" />
+
+
+ <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/misc.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />

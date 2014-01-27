@@ -41,6 +41,29 @@ class DashController extends Controller
     }
 
 
+
+    public function actionInicio()
+    {
+        $this->titulo = "Inicio";
+
+        // Cargamos modelo Mensaje
+        $afiliado = Afiliado::model()->findByPk(Yii::app()->user->id);
+        $this->render("inicio",array('afiliado'=>$afiliado));
+
+    }
+
+
+
+    public function actionCalendario()
+    {
+        $this->titulo = "Calendario";
+
+        // Cargamos modelo Mensaje
+        $afiliado = Afiliado::model()->findByPk(Yii::app()->user->id);
+        $this->render("calendario",array('afiliado'=>$afiliado));
+
+    }
+
     public function actionAdmin()
     {
         $model=new Afiliado('search');
@@ -54,13 +77,6 @@ class DashController extends Controller
     }
 
 
-
-    public function actionMensajes($id)
-    {
-        $this->titulo = "Mensajes";
-        $this->render('mensajes');
-
-    }
 
 
 
@@ -106,6 +122,13 @@ class DashController extends Controller
     }
 
 
+
+    public function actionInvitar() {
+        $this->titulo = "Invitar";
+
+        $this->render("invitar");
+
+    }
 
 
 
