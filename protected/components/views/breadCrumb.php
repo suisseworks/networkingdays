@@ -6,7 +6,7 @@
     foreach($this->links as $crumb) {
         if(isset($crumb[1])) {
 
-            echo '<div class="breadcrumb-button" onclick="window.location.href=' . "'" . Yii::app()->request->baseUrl . "'" . '"> <span class="breadcrumb-label"> <i class="icon-edit"></i> ' . $crumb[0] . '</span> <span class="breadcrumb-arrow"><span></span></span> </div>';
+            echo '<div class="breadcrumb-button" onclick="window.location.href=' . "'" . Yii::app()->request->baseUrl . $crumb[1]  . "'" . '"> <span class="breadcrumb-label"> <i class="icon-edit"></i> ' . $crumb[0] . '</span> <span class="breadcrumb-arrow"><span></span></span> </div>';
 
         } else {
             echo '<div class="breadcrumb-button"> <span class="breadcrumb-label"> <i class="icon-edit"></i> ' . $crumb[0] . '</span> <span class="breadcrumb-arrow"><span></span></span> </div>';

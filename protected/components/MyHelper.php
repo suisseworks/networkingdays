@@ -58,6 +58,8 @@ class MyHelper extends CApplicationComponent
 
 
 
+
+    //Yii::app()->myhelper->toConsole()
     public function toConsole( $data ) {
         if ( is_array( $data ) )
             $output = "<script>console.log( 'NetworkingDays Console: " . implode( ',', $data) . "' );</script>";
@@ -118,8 +120,22 @@ class MyHelper extends CApplicationComponent
             case 11: return "Noviembre"; break;
             case 12: return "Diciembre"; break;
         }
-
     }
+
+
+
+
+    public function esAdministrador()
+    {
+        if (Yii::app()->user->name == 'admin')
+            return true;
+        return false;
+    }
+
+
+
+
+
 
 
 

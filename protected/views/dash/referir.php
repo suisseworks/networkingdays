@@ -11,8 +11,6 @@ $this->breadcrumbs=array(
 
 
 <script>
-    setActiveMenu('#sidebar-menu-acciones', '#sidebar-menu-referir');
-
 
     $(document).ready(function(){
         $('#tabla_afiliados td').height(20);

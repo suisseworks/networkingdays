@@ -86,6 +86,19 @@ $this->breadcrumbs=array(
                 <div class="col-md-8">
                     <div class="sine-chart" id="xchart-sine"></div>
                 </div>
+
+
+                <!-- CALENDARIO -->
+                <div class="box" style="display: block; overflow: scroll;">
+                    <div class="box-header">
+                        <div class="title">Full calendar</div>
+                    </div>
+                    <div class="box-content">
+                        <div id="calendar"></div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </div>

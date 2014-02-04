@@ -14,7 +14,7 @@ class DashController extends Controller
     {
         return array(
             array('allow',  // allow all users to perform 'index' and 'view' actions
-                'actions'=>array('index','referir','admin'),
+                'actions'=>array('index','referir','admin','publicar'),
                 'users'=>array('*'),
             ),
             array('deny',  // deny all users
@@ -42,14 +42,38 @@ class DashController extends Controller
 
 
 
+
     public function actionInicio()
     {
         $this->titulo = "Inicio";
 
         // Cargamos modelo Mensaje
         $afiliado = Afiliado::model()->findByPk(Yii::app()->user->id);
-        $this->render("inicio",array('afiliado'=>$afiliado));
+        $spotlight = Spotlight::model()->findAll(array('condition'=>'estatus = 1','order'=>'fecha DESC'));
 
+
+        // muro
+        $sqlProvider = new CSqlDataProvider("
+                                SELECT m.asunto, m.mensaje
+                                FROM nw_muro m
+                                WHERE m.idafiliado IN
+                                (SELECT a.idnw_afiliado FROM nw_afiliado  a
+                                WHERE a.idcirculo = $afiliado->idcirculo)
+                           ");
+        $muro = $sqlProvider->getData();
+
+
+        $this->render("inicio",array('afiliado'=>$afiliado, 'muro'=>$muro, 'spotlight'=>$spotlight));
+        
+    }
+
+
+
+    public function actionPublicar()
+    {
+
+        Yii::app()->myhelper->toConsole('HOLA');
+        return "HOLA";
     }
 
 

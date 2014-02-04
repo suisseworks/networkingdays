@@ -532,6 +532,8 @@ class AfiliadoController extends Controller
  */
     public function actionMostrarCirculos()
     {
+
+
         $idpais = $_POST['idpais'];
         $idcategoria = $_POST['idcategoria'];
         $idespecialidad = $_POST['idespecialidad'];
